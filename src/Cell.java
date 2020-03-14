@@ -7,14 +7,13 @@ import javafx.scene.layout.VBox;
 
 public class Cell extends Label {
     State state = State.EMPTY;
-    Engine engine;
+
     Cell(String displayedText, Engine engine) {
         super(displayedText);
         setOnMouseClicked(event -> {
             if (state.equals(State.EMPTY))
             setState(engine.getState());
-            engine.changeState();
-            engine.checkWin();
+            engine.reactOnChanges();
         });
         VBox.setVgrow(this, Priority.ALWAYS);
         HBox.setHgrow(this, Priority.ALWAYS);
@@ -34,6 +33,8 @@ public class Cell extends Label {
             setText("FUPM");
         } else if (state.equals(State.X)) {
             setText("FAKI");
+        } else {
+            setText("[  ]");
         }
     }
 

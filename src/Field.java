@@ -31,15 +31,25 @@ public class Field extends GridPane {
         return true;
     }
 
-    List<Boolean> computeField() {
-        List<Boolean> booleans = new ArrayList<>();
+    List<Integer> computeField() {
+        List<Integer> values = new ArrayList<>();
         for(Node cell : getChildren()) {
             if ((((Cell)cell).getState()).equals(State.X)) {
-                booleans.add(true);
+                values.add(1);
+            } else if ((((Cell)cell).getState()).equals(State.O)) {
+                values.add(-1);
             } else {
-                booleans.add(false);
+                values.add(0);
             }
         }
-        return booleans;
+        return values;
+    }
+
+    void reset() {
+        System.out.println("Field : resetting");
+        for(Node node : getChildren()) {
+            Cell cell = (Cell)node;
+            cell.setState(State.EMPTY);
+        }
     }
 }
