@@ -1,8 +1,7 @@
 import java.util.List;
 
 public class Engine {
-    FieldModel fieldModel;
-    State state = State.X;
+    State state = State.DASR;
     Field field;
 
     public State getState() {
@@ -10,7 +9,7 @@ public class Engine {
     }
 
     public void changeState() {
-        state = (state.equals(State.X)) ? State.O : State.X;
+        state = (state.equals(State.DASR)) ? State.DCAM : State.DASR;
     }
 
     Integer[][] convertCellValues(List<Integer> values) {
@@ -34,49 +33,40 @@ public class Engine {
 
     State checkWin() {
         Integer[][] valuesToCheck = convertCellValues(field.computeField());
-        Integer[] rowSum = new Integer[3];
-        Integer[] columnSum = new Integer[3];
-        for(int i = 0; i < 3; ++i) {
-            rowSum[i] = 0;
-            columnSum[i] = 0;
+        Integer[] sum = new Integer[8];
+        for(int i = 0; i < 8; ++i) {
+            sum[i] = 0;
         }
         for(int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                rowSum[i] += valuesToCheck[i][j];
-                columnSum[j] += valuesToCheck[i][j];
+                sum[i] += valuesToCheck[i][j];
+                sum[j + 3] += valuesToCheck[i][j];
             }
+            sum[6] += valuesToCheck[i][i];
+            sum[7] += valuesToCheck[i][2 - i];
         }
-        for(Integer sum : rowSum) {
-            System.out.println(sum);
-            if(sum.equals(3)) {
-                return State.X;
+        for(Integer integer : sum) {
+            System.out.println(integer);
+            if(integer.equals(3)) {
+                return State.DASR;
             }
-            else if(sum.equals(-3)) {
-                return State.O;
-            }
-        }
-        for(Integer sum : columnSum) {
-            System.out.println(sum);
-            if(sum.equals(3)) {
-                return State.X;
-            }
-            else if(sum.equals(-3)) {
-                return State.O;
+            else if(integer.equals(-3)) {
+                return State.DCAM;
             }
         }
         return State.EMPTY;
     }
     void reactOnChanges() {
         State winner = checkWin();
-        if(winner.equals(State.X)) {
+        if(winner.equals(State.DASR)) {
             System.out.println("FAKI Champion");
             reset(winner);
-        } else if (winner.equals(State.O)) {
+        } else if (winner.equals(State.DCAM)) {
             System.out.println("FUPM Champion");
             reset(winner);
         } else if (field.full()) {
             System.out.println("Draw");
-            reset(State.X);
+            reset(State.DASR);
         } else {
             changeState();
         }

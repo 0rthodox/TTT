@@ -1,5 +1,5 @@
 public enum State {
-    X,
-    O,
+    DASR,
+    DCAM,
     EMPTY
 }

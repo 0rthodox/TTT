@@ -9,10 +9,11 @@ import java.util.List;
 
 public class Field extends GridPane {
     private final int GAP = 20;
+    ImageManager imageManager = new ImageManager();
     Field(Engine engine) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                Cell cell = new Cell("0", engine);
+                Cell cell = new Cell(imageManager, engine);
                 this.add(cell, i, j);
             }
         }
@@ -34,9 +35,9 @@ public class Field extends GridPane {
     List<Integer> computeField() {
         List<Integer> values = new ArrayList<>();
         for(Node cell : getChildren()) {
-            if ((((Cell)cell).getState()).equals(State.X)) {
+            if ((((Cell)cell).getState()).equals(State.DASR)) {
                 values.add(1);
-            } else if ((((Cell)cell).getState()).equals(State.O)) {
+            } else if ((((Cell)cell).getState()).equals(State.DCAM)) {
                 values.add(-1);
             } else {
                 values.add(0);
