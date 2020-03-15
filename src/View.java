@@ -15,6 +15,8 @@ public class View {
     StringProperty playerDCAMProperty = new SimpleStringProperty();
     private Boolean soloMode = false;
     BooleanProperty soloModeProperty = new SimpleBooleanProperty(soloMode);
+    ImageManager imageManager = new ImageManager();
+    ViewModel viewModel = new ViewModel();
 
     GridPane getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
         GridPane choicePane = new GridPane();
@@ -46,7 +48,16 @@ public class View {
         choicePane.add(exitButton, 1, 3);
         return choicePane;
     }
-    VBox getGamePane() {
-        return new VBox(new StatusBar(playerDASRProperty.getValue(), playerDCAMProperty.getValue()), new Field(new Engine()));
+    GridPane getGamePane() {
+        GridPane field = new GridPane();
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                Cell cell = new Cell(imageManager, viewModel.getEngine());
+                cell.cellProperties.bind(viewModel.properties.get(i).get(j));
+                field.add(cell, i, j);
+            }
+        }
+        //return new Field(new Engine());
+        return field;
     }
 }

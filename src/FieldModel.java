@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 
 public class FieldModel {
     StringProperty[][] cells = new StringProperty[3][3];
+
     FieldModel() {
         for (StringProperty[] row : cells) {
             for(StringProperty cell : row) {
