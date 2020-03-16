@@ -21,10 +21,12 @@ public class Cell extends ImageView {
     Cell(ImageManager imageManager, Engine engine) {
         super(imageManager.getImage(State.EMPTY));
         setOnMouseClicked(event -> {
+            System.out.println("Mouse clicked");
             if (state.equals(State.EMPTY))
                 cellProperties.signalProperty.setValue(true);
-            setState(engine.getState());
-            engine.reactOnChanges();
+        });
+        cellProperties.stateProperty.addListener((observable, oldValue, newValue) -> {
+            updateImage();
         });
         VBox.setVgrow(this, Priority.NEVER);
         HBox.setHgrow(this, Priority.NEVER);
@@ -43,7 +45,7 @@ public class Cell extends ImageView {
     }
 
     private void updateImage() {
-        setImage(imageManager.getImage(state));
+        setImage(imageManager.getImage(cellProperties.stateProperty.getValue()));
     }
 
     boolean full() {

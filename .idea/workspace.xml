@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7da42a1e-1a7a-4995-86b4-7f76a85c80b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/StatusBar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/View.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FieldModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FieldModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StatusBar.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewModel.java" afterDir="false" />
     </list>
@@ -101,7 +95,8 @@
       <workItem from="1584194868631" duration="4581000" />
       <workItem from="1584214452320" duration="3179000" />
       <workItem from="1584270202672" duration="6641000" />
-      <workItem from="1584303644877" duration="4521000" />
+      <workItem from="1584303644877" duration="4831000" />
+      <workItem from="1584376384094" duration="3273000" />
     </task>
     <servers />
   </component>

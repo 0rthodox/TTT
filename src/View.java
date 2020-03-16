@@ -1,3 +1,4 @@
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ public class View {
     BooleanProperty soloModeProperty = new SimpleBooleanProperty(soloMode);
     ImageManager imageManager = new ImageManager();
     ViewModel viewModel = new ViewModel();
+    BooleanProperty hasWinner = new SimpleBooleanProperty(false);
 
     GridPane getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
         GridPane choicePane = new GridPane();
@@ -57,7 +59,11 @@ public class View {
                 field.add(cell, i, j);
             }
         }
-        //return new Field(new Engine());
+        hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
+        hasWinner.addListener((observable, oldValue, newValue) -> {
+            //TODO::dispatch event
+            System.out.println("");
+        });
         return field;
     }
 }
