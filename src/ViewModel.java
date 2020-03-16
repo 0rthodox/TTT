@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewModel {
-    ObjectProperty<State> hasWinnerProperty = new SimpleObjectProperty<State>(State.EMPTY);
+    private ObjectProperty<State> hasWinnerProperty = new SimpleObjectProperty<>();
     List<List<CellProperties>> properties = new ArrayList<>(3);
-    Engine engine = new Engine();
     State state = State.EMPTY;
 
     ObjectProperty<State> getHasWinnerProperty() {
         return hasWinnerProperty;
     }
 
-    State getStateAndChange() {
+    private State getStateAndChange() {
         if (state.equals(State.DCAM)) {
             state = State.DASR;
             return State.DCAM;
@@ -40,11 +39,7 @@ public class ViewModel {
         }
     }
 
-    public Engine getEngine() {
-        return engine;
-    }
-
-    Integer[][] convertCellValues() {
+    private Integer[][] convertCellValues() {
         Integer[][] convertedValues = new Integer[3][3];
         for (int i = 0; i < 3; ++i) {
             for(int j = 0 ; j < 3; ++j) {
@@ -60,7 +55,7 @@ public class ViewModel {
         return convertedValues;
     }
 
-    State getWinningState() {
+    private State getWinningState() {
         Integer[][] valuesToCheck = convertCellValues();
         Integer[] sum = new Integer[8];
         for(int i = 0; i < 8; ++i) {
@@ -86,7 +81,7 @@ public class ViewModel {
         return State.EMPTY;
     }
 
-    boolean full() {
+    private boolean full() {
         for (List<CellProperties> propertiesRow : properties) {
             for (CellProperties cellProperties : propertiesRow) {
                 if (cellProperties.stateProperty.getValue().equals(State.EMPTY)) {
@@ -96,7 +91,7 @@ public class ViewModel {
         }
         return true;
     }
-    void checkState(State state) {
+    private void checkState(State state) {
         if (state.equals(State.DCAM)) {
             hasWinnerProperty.setValue(State.DCAM);
         } else if (state.equals(State.DASR)) {
@@ -105,4 +100,5 @@ public class ViewModel {
             hasWinnerProperty.setValue(State.EMPTY);
         }
     }
+
 }

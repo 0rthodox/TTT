@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7da42a1e-1a7a-4995-86b4-7f76a85c80b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewModel.java" afterDir="false" />
     </list>
@@ -97,6 +99,7 @@
       <workItem from="1584270202672" duration="6641000" />
       <workItem from="1584303644877" duration="4831000" />
       <workItem from="1584376384094" duration="3273000" />
+      <workItem from="1584383723062" duration="3263000" />
     </task>
     <servers />
   </component>

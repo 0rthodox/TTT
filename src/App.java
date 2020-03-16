@@ -13,16 +13,19 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         Stage stage = primaryStage;
-        Boolean startPressed = false;
-        BooleanProperty startPressedProperty = new SimpleBooleanProperty(startPressed);
-
-        Boolean exitPressed = false;
-        BooleanProperty exitPressedProperty = new SimpleBooleanProperty(exitPressed);
+        BooleanProperty startPressedProperty = new SimpleBooleanProperty(false);
+        BooleanProperty restartProperty = new SimpleBooleanProperty(false);
+        BooleanProperty exitPressedProperty = new SimpleBooleanProperty(false);
         View view = new View();
         startPressedProperty.addListener((observable, oldValue, newValue) ->
-                stage.setScene(new Scene(view.getGamePane())));
+                stage.setScene(new Scene(view.getGamePane(restartProperty))));
         exitPressedProperty.addListener((observable, oldValue, newValue) ->
                 stage.close());
+        restartProperty.addListener((observable, oldValue, newValue) -> {
+            stage.close();
+            Stage newStage = new Stage();
+            start(newStage);
+        });
         stage.setScene(new Scene(
                 view.getChoicePane(startPressedProperty, exitPressedProperty)));
         stage.show();

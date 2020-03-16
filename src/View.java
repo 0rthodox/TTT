@@ -1,24 +1,35 @@
-import com.sun.xml.internal.bind.v2.TODO;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.beans.property.*;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 
 public class View {
-    StringProperty playerDASRProperty = new SimpleStringProperty();
-    StringProperty playerDCAMProperty = new SimpleStringProperty();
+    private StringProperty playerDASRProperty = new SimpleStringProperty();
+    private StringProperty playerDCAMProperty = new SimpleStringProperty();
     private Boolean soloMode = false;
-    BooleanProperty soloModeProperty = new SimpleBooleanProperty(soloMode);
-    ImageManager imageManager = new ImageManager();
-    ViewModel viewModel = new ViewModel();
-    BooleanProperty hasWinner = new SimpleBooleanProperty(false);
+    private BooleanProperty soloModeProperty = new SimpleBooleanProperty(soloMode);
+    private BooleanProperty restartProperty = new SimpleBooleanProperty(false);
+    private ImageManager imageManager = new ImageManager();
+    private ViewModel viewModel = new ViewModel();
+    private ObjectProperty<State> hasWinner = new SimpleObjectProperty<>();
+    private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
+
+    View() {
+        hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
+        hasWinner.addListener((observable, oldValue, newValue) -> {
+            String winner;
+            if (newValue.equals(State.EMPTY)) {
+                winner = "Draw";
+            } else if (newValue.equals(State.DASR)) {
+                winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
+            } else {
+                winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
+            }
+            winnerAlert.setContentText(winner);
+            restartProperty.setValue(true);
+            winnerAlert.showAndWait();
+        });
+    }
 
     GridPane getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
         GridPane choicePane = new GridPane();
@@ -50,20 +61,16 @@ public class View {
         choicePane.add(exitButton, 1, 3);
         return choicePane;
     }
-    GridPane getGamePane() {
+    GridPane getGamePane(BooleanProperty restartProperty) {
+        restartProperty.bindBidirectional(this.restartProperty);
         GridPane field = new GridPane();
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                Cell cell = new Cell(imageManager, viewModel.getEngine());
+                Cell cell = new Cell(imageManager);
                 cell.cellProperties.bind(viewModel.properties.get(i).get(j));
                 field.add(cell, i, j);
             }
         }
-        hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
-        hasWinner.addListener((observable, oldValue, newValue) -> {
-            //TODO::dispatch event
-            System.out.println("");
-        });
         return field;
     }
 }

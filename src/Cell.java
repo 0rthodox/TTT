@@ -18,7 +18,7 @@ public class Cell extends ImageView {
 
     ImageManager imageManager;
 
-    Cell(ImageManager imageManager, Engine engine) {
+    Cell(ImageManager imageManager) {
         super(imageManager.getImage(State.EMPTY));
         setOnMouseClicked(event -> {
             System.out.println("Mouse clicked");
@@ -28,8 +28,6 @@ public class Cell extends ImageView {
         cellProperties.stateProperty.addListener((observable, oldValue, newValue) -> {
             updateImage();
         });
-        VBox.setVgrow(this, Priority.NEVER);
-        HBox.setHgrow(this, Priority.NEVER);
         setFitWidth(100);
         setFitHeight(100);
         this.imageManager = imageManager;
