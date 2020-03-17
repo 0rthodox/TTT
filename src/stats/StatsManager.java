@@ -62,4 +62,8 @@ public class StatsManager {
     Stats get(Stats stats) {
         return this.stats.stream().filter(stats::equals).findAny().orElse(null);
     }
+
+    public Set<Stats> getStats() {
+        return stats;
+    }
 }

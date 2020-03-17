@@ -5,15 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/stats.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CellProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cell/CellProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/ImageManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/ViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stats/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats/Stats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stats/StatsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats/StatsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tictac/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/View.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +93,7 @@
       <workItem from="1584001124831" duration="2601000" />
       <workItem from="1584134679025" duration="6186000" />
       <workItem from="1584194868631" duration="6428000" />
-      <workItem from="1584470328352" duration="2284000" />
+      <workItem from="1584470328352" duration="4249000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,18 @@ public class Stats {
     Integer wins;
     Integer losses;
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getWins() {
+        return wins;
+    }
+
+    public Integer getLosses() {
+        return losses;
+    }
+
     public Stats(String name, Integer wins, Integer losses) {
         this.name = name;
         this.wins = wins;

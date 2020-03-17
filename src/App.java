@@ -10,6 +10,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setResizable(false);
         BooleanProperty startPressedProperty = new SimpleBooleanProperty(false);
         BooleanProperty restartProperty = new SimpleBooleanProperty(false);
         BooleanProperty exitPressedProperty = new SimpleBooleanProperty(false);
