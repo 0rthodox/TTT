@@ -1,3 +1,6 @@
+package tictac;
+
+import cell.CellProperties;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -43,9 +46,9 @@ public class ViewModel {
         Integer[][] convertedValues = new Integer[3][3];
         for (int i = 0; i < 3; ++i) {
             for(int j = 0 ; j < 3; ++j) {
-                if (properties.get(i).get(j).stateProperty.getValue().equals(State.DASR)) {
+                if (properties.get(i).get(j).getStateProperty().getValue().equals(State.DASR)) {
                     convertedValues[i][j] = 1;
-                } else if (properties.get(i).get(j).stateProperty.getValue().equals(State.DCAM)) {
+                } else if (properties.get(i).get(j).getStateProperty().getValue().equals(State.DCAM)) {
                     convertedValues[i][j] = -1;
                 } else {
                     convertedValues[i][j] = 0;
@@ -70,7 +73,6 @@ public class ViewModel {
             sum[7] += valuesToCheck[i][2 - i];
         }
         for(Integer integer : sum) {
-            System.out.println(integer);
             if(integer.equals(3)) {
                 return State.DASR;
             }
@@ -84,7 +86,7 @@ public class ViewModel {
     private boolean full() {
         for (List<CellProperties> propertiesRow : properties) {
             for (CellProperties cellProperties : propertiesRow) {
-                if (cellProperties.stateProperty.getValue().equals(State.EMPTY)) {
+                if (cellProperties.getStateProperty().getValue().equals(State.EMPTY)) {
                     return false;
                 }
             }

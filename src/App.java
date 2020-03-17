@@ -3,6 +3,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tictac.View;
 
 
 public class App extends Application {

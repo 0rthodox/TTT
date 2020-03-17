@@ -12,7 +12,7 @@ import static java.lang.System.lineSeparator;
 public class StatsManager {
     Path path = Paths.get("resources/stats.txt");
     Set<Stats> stats = new HashSet<>();
-    StatsManager() {
+    public StatsManager() {
         if (path.toFile().exists()) {
             parseStats(FileManager.readPath(path));
         }
@@ -36,7 +36,7 @@ public class StatsManager {
         return stringedStats;
     }
 
-    void saveStats() {
+    public void saveStats() {
         FileManager.save(path, StringUtils.join(stringeStats(), lineSeparator()));
     }
 
@@ -44,4 +44,22 @@ public class StatsManager {
         this.stats.add(stats);
     }
 
+    public void giveWinAndLoss(String winner, String loser) {
+        updateStats(winner, 1, 0);
+        updateStats(loser, 0, 1);
+    }
+    private void updateStats(String winner, int wins, int losses) {
+        Stats foundStats = get(new Stats(winner));
+        if (foundStats == null) {
+            stats.add(new Stats(winner, wins, losses));
+        } else {
+            stats.remove(foundStats);
+            foundStats.losses += losses;
+            foundStats.wins += wins;
+            stats.add(foundStats);
+        }
+    }
+    Stats get(Stats stats) {
+        return this.stats.stream().filter(stats::equals).findAny().orElse(null);
+    }
 }

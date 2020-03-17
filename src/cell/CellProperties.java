@@ -1,7 +1,10 @@
+package cell;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import tictac.State;
 
 public class CellProperties {
 
@@ -13,12 +16,21 @@ public class CellProperties {
         signalProperty = new SimpleBooleanProperty(bool);
     }
 
+
+    public ObjectProperty<State> getStateProperty() {
+        return stateProperty;
+    }
+
+    public BooleanProperty getSignalProperty() {
+        return signalProperty;
+    }
+
     public CellProperties(ObjectProperty<State> stateProperty, BooleanProperty signalProperty) {
         this.stateProperty = stateProperty;
         this.signalProperty = signalProperty;
     }
 
-    void bind(CellProperties cellProperties) {
+    public void bind(CellProperties cellProperties) {
         signalProperty.bindBidirectional(cellProperties.signalProperty);
         stateProperty.bindBidirectional(cellProperties.stateProperty);
     }

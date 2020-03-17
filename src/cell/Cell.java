@@ -1,11 +1,8 @@
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
+package cell;
+
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import tictac.ImageManager;
+import tictac.State;
 
 
 public class Cell extends ImageView {
@@ -18,10 +15,9 @@ public class Cell extends ImageView {
 
     ImageManager imageManager;
 
-    Cell(ImageManager imageManager) {
+    public Cell(ImageManager imageManager) {
         super(imageManager.getImage(State.EMPTY));
         setOnMouseClicked(event -> {
-            System.out.println("Mouse clicked");
             if (state.equals(State.EMPTY))
                 cellProperties.signalProperty.setValue(true);
         });
@@ -33,23 +29,9 @@ public class Cell extends ImageView {
         this.imageManager = imageManager;
     }
 
-    void setState(State state) {
-        this.state = state;
-        updateImage();
-    }
-
-    public State getState() {
-        return state;
-    }
-
     private void updateImage() {
         setImage(imageManager.getImage(cellProperties.stateProperty.getValue()));
     }
-
-    boolean full() {
-        return !state.equals(State.EMPTY);
-    }
-
 
 
 }

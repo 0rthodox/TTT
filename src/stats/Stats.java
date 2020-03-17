@@ -11,6 +11,10 @@ public class Stats {
         this.losses = losses;
     }
 
+    public Stats(String name) {
+        this.name = name;
+    }
+
     static Stats parseStats(String[] stats) {
         return new Stats(stats[0], Integer.parseInt(stats[1]), Integer.parseInt(stats[2]));
     }
@@ -21,5 +25,12 @@ public class Stats {
         stringedStats[1] = wins.toString();
         stringedStats[2] = losses.toString();
         return stringedStats;
+    }
+
+    public boolean equals(Stats stats) {
+        if (stats == null) {
+            return false;
+        }
+        return this.name.equals(stats.name);
     }
 }

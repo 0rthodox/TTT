@@ -1,6 +1,10 @@
+package tictac;
+
+import cell.Cell;
 import javafx.beans.property.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import stats.StatsManager;
 
 
 public class View {
@@ -14,16 +18,21 @@ public class View {
     private ObjectProperty<State> hasWinner = new SimpleObjectProperty<>();
     private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
 
-    View() {
+    public View() {
         hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
         hasWinner.addListener((observable, oldValue, newValue) -> {
+            StatsManager statsManager = new StatsManager();
             String winner;
             if (newValue.equals(State.EMPTY)) {
                 winner = "Draw";
             } else if (newValue.equals(State.DASR)) {
                 winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
+                statsManager.giveWinAndLoss(playerDASRProperty.getValue(), playerDCAMProperty.getValue());
+                statsManager.saveStats();
             } else {
                 winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
+                statsManager.giveWinAndLoss(playerDCAMProperty.getValue(), playerDASRProperty.getValue());
+                statsManager.saveStats();
             }
             winnerAlert.setContentText(winner);
             restartProperty.setValue(true);
@@ -31,7 +40,7 @@ public class View {
         });
     }
 
-    GridPane getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
+    public GridPane getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
         GridPane choicePane = new GridPane();
         TextField textFieldDASR = new TextField();
         TextField textFieldDCAM = new TextField();
@@ -61,13 +70,13 @@ public class View {
         choicePane.add(exitButton, 1, 3);
         return choicePane;
     }
-    GridPane getGamePane(BooleanProperty restartProperty) {
+    public GridPane getGamePane(BooleanProperty restartProperty) {
         restartProperty.bindBidirectional(this.restartProperty);
         GridPane field = new GridPane();
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                Cell cell = new Cell(imageManager);
-                cell.cellProperties.bind(viewModel.properties.get(i).get(j));
+                cell.Cell cell = new Cell(imageManager);
+                cell.getCellProperties().bind(viewModel.properties.get(i).get(j));
                 field.add(cell, i, j);
             }
         }
