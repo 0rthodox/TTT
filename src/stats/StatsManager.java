@@ -48,6 +48,14 @@ public class StatsManager {
         updateStats(winner, 1, 0);
         updateStats(loser, 0, 1);
     }
+
+    public void giveWin(String winner) {
+        updateStats(winner, 1, 0);
+    }
+
+    public void giveLoss(String loser) {
+        updateStats(loser, 0, 1);
+    }
     private void updateStats(String winner, int wins, int losses) {
         Stats foundStats = get(new Stats(winner));
         if (foundStats == null) {

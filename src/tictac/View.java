@@ -15,10 +15,8 @@ import java.util.Set;
 
 
 public class View {
-    private StringProperty playerDASRProperty = new SimpleStringProperty();
-    private StringProperty playerDCAMProperty = new SimpleStringProperty();
-    private Boolean soloMode = false;
-    private BooleanProperty soloModeProperty = new SimpleBooleanProperty(soloMode);
+    private StringProperty playerDASRProperty = new SimpleStringProperty("");
+    private StringProperty playerDCAMProperty = new SimpleStringProperty("");
     private BooleanProperty restartProperty = new SimpleBooleanProperty(false);
     private ImageManager imageManager = new ImageManager();
     private ViewModel viewModel = new ViewModel();
@@ -35,11 +33,21 @@ public class View {
                 winner = "Draw";
             } else if (newValue.equals(State.DASR)) {
                 winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
-                statsManager.giveWinAndLoss(playerDASRProperty.getValue(), playerDCAMProperty.getValue());
+                if (!playerDCAMProperty.getValue().equals("")) {
+                    statsManager.giveLoss(playerDCAMProperty.getValue());
+                }
+                if (!playerDASRProperty.getValue().equals("")) {
+                    statsManager.giveWin(playerDASRProperty.getValue());
+                }
                 statsManager.saveStats();
             } else {
                 winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
-                statsManager.giveWinAndLoss(playerDCAMProperty.getValue(), playerDASRProperty.getValue());
+                if (!playerDCAMProperty.getValue().equals("")) {
+                    statsManager.giveWin(playerDCAMProperty.getValue());
+                }
+                if (!playerDASRProperty.getValue().equals("")) {
+                    statsManager.giveLoss(playerDASRProperty.getValue());
+                }
                 statsManager.saveStats();
             }
             winnerAlert.setContentText(winner);
@@ -55,13 +63,11 @@ public class View {
 
         TextField textFieldDASR = new TextField();
         TextField textFieldDCAM = new TextField();
-        CheckBox modeBox = new CheckBox();
         BooleanProperty startPressed = new SimpleBooleanProperty(false);
         BooleanProperty exitPressed = new SimpleBooleanProperty(false);
 
         textFieldDASR.textProperty().bindBidirectional(playerDASRProperty);
         textFieldDCAM.textProperty().bindBidirectional(playerDCAMProperty);
-        modeBox.selectedProperty().bindBidirectional(soloModeProperty);
         startPressed.bindBidirectional(startPressedProperty);
         exitPressed.bindBidirectional(exitPressedProperty);
 
@@ -77,8 +83,6 @@ public class View {
         choicePane.add(textFieldDASR, 1, 0);
         choicePane.add(new Label("DCAM's player:"), 0, 1);
         choicePane.add(textFieldDCAM, 1, 1);
-        choicePane.add(new Label("Solo mode:"), 0, 2);
-        choicePane.add(modeBox, 1, 2);
         choicePane.add(new Label("Show statistics:"), 0, 3);
         choicePane.add(statistics, 1, 3);
         choicePane.add(startButton, 0, 4);
