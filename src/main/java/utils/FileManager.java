@@ -13,7 +13,6 @@ import static java.lang.System.lineSeparator;
 
 public class FileManager {
     public static void save(Path path, String text) {
-        //path.toFile().createNewFile();
         try (BufferedWriter ostream = new BufferedWriter(new FileWriter(path.toFile()))){
             ostream.write(text);
         } catch (IOException ioEx) {

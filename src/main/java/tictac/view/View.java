@@ -1,6 +1,5 @@
-package tictac;
+package tictac.view;
 
-import cell.Cell;
 import javafx.beans.property.*;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,6 +12,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import stats.Stats;
 import stats.StatsManager;
+import tictac.State;
+import tictac.ViewModel;
 import utils.FileManager;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class View {
     private StringProperty playerDASRProperty = new SimpleStringProperty("");
     private StringProperty playerDCAMProperty = new SimpleStringProperty("");
     private BooleanProperty restartProperty = new SimpleBooleanProperty(false);
-    private ImageManager imageManager = new ImageManager();
     private ViewModel viewModel = new ViewModel();
     private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
     private final int GAP = 10;
@@ -74,13 +74,15 @@ public class View {
     public GridPane getGamePane(BooleanProperty restartProperty) {
         restartProperty.bindBidirectional(this.restartProperty);
         GridPane field = new GridPane();
+        //field.getScene().getWindow()
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                cell.Cell cell = new Cell(imageManager);
+                Cell cell = new Cell();
                 cell.setOnMouseClicked(event -> {
+                    //TODO:((Cell)event.getSource()).getScene()
                     if (cell.getState().equals(State.EMPTY)) {
                         cell.setState(viewModel.getStateAndChange());
-                        State winningState = viewModel.checkWin(convertCells(field));
+                        State winningState = viewModel.checkWinner(convertCells(field));
                         if (winningState != null) {
                             showWinner(winningState);
                         }
@@ -102,7 +104,7 @@ public class View {
             labels.add(labeledStats);
         }
         Stage statsStage = new Stage();
-        statsStage.getIcons().add(FileManager.readImage("resources/x.png"));
+        statsStage.getIcons().add(FileManager.readImage("src/main/resources/x.png"));
         statsStage.setTitle("Stats");
         GridPane statsPane = new GridPane();
         statsPane.setHgap(GAP);
@@ -117,13 +119,12 @@ public class View {
         statsStage.show();
     }
 
-    private Integer[][] convertCells(GridPane field) {
-        Integer[][] convertedCells = new Integer[3][3];
+    private int[][] convertCells(GridPane field) {
+        int[][] convertedCells = new int[3][3];
         int i = 0;
         int j = 0;
         for(Node node : field.getChildren()) {
-            convertedCells[i][j] = ((Cell)node).getState().getInteger();
-            j++;
+            convertedCells[i][j++] = ((Cell)node).getState().getInteger();
             if (j == 3) {
                 j = 0;
                 i++;
@@ -139,19 +140,19 @@ public class View {
             winner = "Draw";
         } else if (state.equals(State.DASR)) {
             winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
-            if (!playerDCAMProperty.getValue().equals("")) {
+            if (!playerDCAMProperty.getValue().isEmpty()) {
                 statsManager.giveLoss(playerDCAMProperty.getValue());
             }
-            if (!playerDASRProperty.getValue().equals("")) {
+            if (!playerDASRProperty.getValue().isEmpty()) {
                 statsManager.giveWin(playerDASRProperty.getValue());
             }
             statsManager.saveStats();
         } else {
             winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
-            if (!playerDCAMProperty.getValue().equals("")) {
+            if (!playerDCAMProperty.getValue().isEmpty()) {
                 statsManager.giveWin(playerDCAMProperty.getValue());
             }
-            if (!playerDASRProperty.getValue().equals("")) {
+            if (!playerDASRProperty.getValue().isEmpty()) {
                 statsManager.giveLoss(playerDASRProperty.getValue());
             }
             statsManager.saveStats();

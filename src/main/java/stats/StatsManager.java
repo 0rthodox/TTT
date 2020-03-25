@@ -10,7 +10,7 @@ import java.util.*;
 import static java.lang.System.lineSeparator;
 
 public class StatsManager {
-    Path path = Paths.get("resources/stats.txt");
+    Path path = Paths.get("src/main/resources/stats.txt");
     Set<Stats> stats = new HashSet<>();
     public StatsManager() {
         if (path.toFile().exists()) {
@@ -39,6 +39,7 @@ public class StatsManager {
     }
 
     public void saveStats() {
+        System.out.println("Saving");
         FileManager.save(path, StringUtils.join(stringeStats(), lineSeparator()));
     }
 
