@@ -5,9 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/stats.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cell/CellProperties.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stats/StatsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats/StatsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictac/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictac/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictac/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/ViewModel.java" afterDir="false" />
     </list>
@@ -101,7 +99,7 @@
       <workItem from="1584889018535" duration="636000" />
       <workItem from="1585084352360" duration="9000" />
       <workItem from="1585141789387" duration="903000" />
-      <workItem from="1585159242476" duration="1342000" />
+      <workItem from="1585159242476" duration="3233000" />
     </task>
     <servers />
   </component>

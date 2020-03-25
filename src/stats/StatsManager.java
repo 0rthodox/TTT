@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static java.lang.System.lineSeparator;
-import static java.lang.System.setOut;
 
 public class StatsManager {
     Path path = Paths.get("resources/stats.txt");
@@ -41,15 +40,6 @@ public class StatsManager {
 
     public void saveStats() {
         FileManager.save(path, StringUtils.join(stringeStats(), lineSeparator()));
-    }
-
-    void addStats(Stats stats) {
-        this.stats.add(stats);
-    }
-
-    public void giveWinAndLoss(String winner, String loser) {
-        updateStats(winner, 1, 0);
-        updateStats(loser, 0, 1);
     }
 
     public void giveWin(String winner) {

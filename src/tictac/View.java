@@ -10,7 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import stats.Stats;
 import stats.StatsManager;
@@ -29,39 +28,6 @@ public class View {
     private ViewModel viewModel = new ViewModel();
     private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
     private final int GAP = 10;
-
-    public View() {
-        ObjectProperty<State> hasWinner = new SimpleObjectProperty<>();
-        hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
-        viewModel.getHasWinnerProperty().addListener((observable, oldValue, newValue) -> {
-            StatsManager statsManager = new StatsManager();
-            String winner;
-            if (newValue.equals(State.EMPTY)) {
-                winner = "Draw";
-            } else if (newValue.equals(State.DASR)) {
-                winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
-                if (!playerDCAMProperty.getValue().equals("")) {
-                    statsManager.giveLoss(playerDCAMProperty.getValue());
-                }
-                if (!playerDASRProperty.getValue().equals("")) {
-                    statsManager.giveWin(playerDASRProperty.getValue());
-                }
-                statsManager.saveStats();
-            } else {
-                winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
-                if (!playerDCAMProperty.getValue().equals("")) {
-                    statsManager.giveWin(playerDCAMProperty.getValue());
-                }
-                if (!playerDASRProperty.getValue().equals("")) {
-                    statsManager.giveLoss(playerDASRProperty.getValue());
-                }
-                statsManager.saveStats();
-            }
-            winnerAlert.setContentText(winner);
-            restartProperty.setValue(true);
-            winnerAlert.showAndWait();
-        });
-    }
 
     public VBox getChoicePane(BooleanProperty startPressedProperty, BooleanProperty exitPressedProperty) {
         GridPane choicePane = new GridPane();
@@ -90,7 +56,7 @@ public class View {
         exitButton.setOnAction(event -> exitPressed.setValue(true));
 
         Label welcoming = new Label("Welcome to");
-        Label title = new Label("The Match of the Century");
+        Label title = new Label("THE MATCH OF THE CENTURY");
         title.setFont(new Font("Comic Sans MS", 30));
         title.setTextFill(Color.rgb(115, 102, 189));
         title.setAlignment(Pos.CENTER);
@@ -114,12 +80,13 @@ public class View {
                 cell.setOnMouseClicked(event -> {
                     if (cell.getState().equals(State.EMPTY)) {
                         cell.setState(viewModel.getStateAndChange());
-                        viewModel.checkWin(convertCells(field));
+                        State winningState = viewModel.checkWin(convertCells(field));
+                        if (winningState != null) {
+                            showWinner(winningState);
+                        }
                     }
-
                 });
                 field.add(cell, i, j);
-                viewModel.properties.get(i).get(j).bindBidirectional(cell.getStateProperty());
             }
         }
         return field;
@@ -163,6 +130,35 @@ public class View {
             }
         }
         return convertedCells;
+    }
+
+    private void showWinner(State state) {
+        StatsManager statsManager = new StatsManager();
+        String winner;
+        if (state.equals(State.EMPTY)) {
+            winner = "Draw";
+        } else if (state.equals(State.DASR)) {
+            winner = "The winner is " + playerDASRProperty.getValue() + " (DASR)";
+            if (!playerDCAMProperty.getValue().equals("")) {
+                statsManager.giveLoss(playerDCAMProperty.getValue());
+            }
+            if (!playerDASRProperty.getValue().equals("")) {
+                statsManager.giveWin(playerDASRProperty.getValue());
+            }
+            statsManager.saveStats();
+        } else {
+            winner = "The winner is " + playerDCAMProperty.getValue() + " (DCAM)";
+            if (!playerDCAMProperty.getValue().equals("")) {
+                statsManager.giveWin(playerDCAMProperty.getValue());
+            }
+            if (!playerDASRProperty.getValue().equals("")) {
+                statsManager.giveLoss(playerDASRProperty.getValue());
+            }
+            statsManager.saveStats();
+        }
+        winnerAlert.setContentText(winner);
+        restartProperty.setValue(true);
+        winnerAlert.showAndWait();
     }
 
 }

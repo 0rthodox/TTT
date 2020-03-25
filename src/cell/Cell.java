@@ -10,11 +10,6 @@ import tictac.State;
 
 public class Cell extends ImageView {
     State state = State.EMPTY;
-    ObjectProperty<State> stateProperty= new SimpleObjectProperty<>(state);
-
-    public Property<State> getStateProperty() {
-        return stateProperty;
-    }
 
     public State getState() {
         return state;
@@ -29,7 +24,6 @@ public class Cell extends ImageView {
 
     public Cell(ImageManager imageManager) {
         super(imageManager.getImage(State.EMPTY));
-
         setFitWidth(100);
         setFitHeight(100);
         this.imageManager = imageManager;
