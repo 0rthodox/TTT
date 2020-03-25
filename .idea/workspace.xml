@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7da42a1e-1a7a-4995-86b4-7f76a85c80b9" name="Default Changelist" comment="">
+    <list default="true" id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/stats.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cell/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cell/CellProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stats/StatsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats/StatsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tictac/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tictac/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tictac/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tictac/ViewModel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +85,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7da42a1e-1a7a-4995-86b4-7f76a85c80b9" name="Default Changelist" comment="" />
+      <changelist id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="" />
       <created>1583608164145</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -94,6 +98,10 @@
       <workItem from="1584470328352" duration="4249000" />
       <workItem from="1584545362649" duration="1496000" />
       <workItem from="1584602066261" duration="3015000" />
+      <workItem from="1584889018535" duration="636000" />
+      <workItem from="1585084352360" duration="9000" />
+      <workItem from="1585141789387" duration="903000" />
+      <workItem from="1585159242476" duration="1342000" />
     </task>
     <servers />
   </component>

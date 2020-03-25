@@ -1,5 +1,8 @@
 package cell;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.ImageView;
 import tictac.ImageManager;
 import tictac.State;
@@ -7,30 +10,33 @@ import tictac.State;
 
 public class Cell extends ImageView {
     State state = State.EMPTY;
-    CellProperties cellProperties = new CellProperties(state, false);
+    ObjectProperty<State> stateProperty= new SimpleObjectProperty<>(state);
 
-    public CellProperties getCellProperties() {
-        return cellProperties;
+    public Property<State> getStateProperty() {
+        return stateProperty;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+        updateImage();
     }
 
     ImageManager imageManager;
 
     public Cell(ImageManager imageManager) {
         super(imageManager.getImage(State.EMPTY));
-        setOnMouseClicked(event -> {
-            if (state.equals(State.EMPTY))
-                cellProperties.signalProperty.setValue(true);
-        });
-        cellProperties.stateProperty.addListener((observable, oldValue, newValue) -> {
-            updateImage();
-        });
+
         setFitWidth(100);
         setFitHeight(100);
         this.imageManager = imageManager;
     }
 
     private void updateImage() {
-        setImage(imageManager.getImage(cellProperties.stateProperty.getValue()));
+        setImage(imageManager.getImage(state));
     }
 
 

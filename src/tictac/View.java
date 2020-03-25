@@ -3,6 +3,7 @@ package tictac;
 import cell.Cell;
 import javafx.beans.property.*;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -32,7 +33,7 @@ public class View {
     public View() {
         ObjectProperty<State> hasWinner = new SimpleObjectProperty<>();
         hasWinner.bindBidirectional(viewModel.getHasWinnerProperty());
-        hasWinner.addListener((observable, oldValue, newValue) -> {
+        viewModel.getHasWinnerProperty().addListener((observable, oldValue, newValue) -> {
             StatsManager statsManager = new StatsManager();
             String winner;
             if (newValue.equals(State.EMPTY)) {
@@ -110,8 +111,15 @@ public class View {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 cell.Cell cell = new Cell(imageManager);
-                cell.getCellProperties().bind(viewModel.properties.get(i).get(j));
+                cell.setOnMouseClicked(event -> {
+                    if (cell.getState().equals(State.EMPTY)) {
+                        cell.setState(viewModel.getStateAndChange());
+                        viewModel.checkWin(convertCells(field));
+                    }
+
+                });
                 field.add(cell, i, j);
+                viewModel.properties.get(i).get(j).bindBidirectional(cell.getStateProperty());
             }
         }
         return field;
@@ -141,4 +149,20 @@ public class View {
         statsStage.setResizable(false);
         statsStage.show();
     }
+
+    private Integer[][] convertCells(GridPane field) {
+        Integer[][] convertedCells = new Integer[3][3];
+        int i = 0;
+        int j = 0;
+        for(Node node : field.getChildren()) {
+            convertedCells[i][j] = ((Cell)node).getState().getInteger();
+            j++;
+            if (j == 3) {
+                j = 0;
+                i++;
+            }
+        }
+        return convertedCells;
+    }
+
 }
