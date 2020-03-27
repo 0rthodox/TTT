@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
-import stats.StatsManager;
+import statistics.StatisticsManager;
 import tictac.State;
 import tictac.GameViewModel;
 
@@ -34,7 +34,7 @@ public class GameView extends GridPane {
     }
 
     private void showWinner(State state) {
-        StatsManager statsManager = new StatsManager();
+        StatisticsManager statsManager = new StatisticsManager();
         String winner;
         if (state.equals(State.EMPTY)) {
             winner = "Draw";

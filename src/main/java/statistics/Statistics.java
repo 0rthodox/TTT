@@ -1,6 +1,6 @@
-package stats;
+package statistics;
 
-public class Stats {
+public class Statistics {
     String name;
     Integer wins;
     Integer losses;
@@ -17,18 +17,18 @@ public class Stats {
         return losses;
     }
 
-    public Stats(String name, Integer wins, Integer losses) {
+    public Statistics(String name, Integer wins, Integer losses) {
         this.name = name;
         this.wins = wins;
         this.losses = losses;
     }
 
-    public Stats(String name) {
+    public Statistics(String name) {
         this.name = name;
     }
 
-    static Stats parseStats(String[] stats) {
-        return new Stats(stats[0], Integer.parseInt(stats[1]), Integer.parseInt(stats[2]));
+    static Statistics parseStats(String[] stats) {
+        return new Statistics(stats[0], Integer.parseInt(stats[1]), Integer.parseInt(stats[2]));
     }
 
     String[] stringifyStats() {
@@ -39,7 +39,7 @@ public class Stats {
         return stringedStats;
     }
 
-    public boolean equals(Stats stats) {
+    public boolean equals(Statistics stats) {
         if (stats == null) {
             return false;
         }

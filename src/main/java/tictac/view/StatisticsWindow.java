@@ -6,8 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import stats.Stats;
-import stats.StatsManager;
+import statistics.Statistics;
+import statistics.StatisticsManager;
 import utils.FileManager;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import java.util.Set;
 public class StatisticsWindow {
     private static final int GAP = 10;
     public StatisticsWindow() {
-        Set<Stats> stats = new StatsManager().getStats();
+        Set<Statistics> stats = new StatisticsManager().getStats();
         List<Label[]> labels = new ArrayList<>(stats.size());
-        for(Stats statsEntry : stats) {
+        for(Statistics statsEntry : stats) {
             Label[] labeledStats = new Label[3];
             labeledStats[0] = new Label(statsEntry.getName());
             labeledStats[1] = new Label(statsEntry.getWins().toString());

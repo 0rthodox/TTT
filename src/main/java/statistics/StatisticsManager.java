@@ -1,4 +1,4 @@
-package stats;
+package statistics;
 
 import com.sun.deploy.util.StringUtils;
 import utils.FileManager;
@@ -9,10 +9,10 @@ import java.util.*;
 
 import static java.lang.System.lineSeparator;
 
-public class StatsManager {
+public class StatisticsManager {
     Path path = Paths.get("src/main/resources/stats.txt");
-    Set<Stats> stats = new HashSet<>();
-    public StatsManager() {
+    Set<Statistics> stats = new HashSet<>();
+    public StatisticsManager() {
         if (path.toFile().exists()) {
             parseStats(FileManager.readPath(path));
         }
@@ -26,13 +26,13 @@ public class StatsManager {
                 for (int i = 0; i < 3; ++i) {
                     stringedStats[i] = stats.get(iterator++);
                 }
-                this.stats.add(Stats.parseStats(stringedStats));
+                this.stats.add(Statistics.parseStats(stringedStats));
             }
         }
     }
     List<String> stringeStats() {
         List<String> stringedStats = new ArrayList<>();
-        for(Stats statsEntry : stats) {
+        for(Statistics statsEntry : stats) {
             stringedStats.addAll(Arrays.asList(statsEntry.stringifyStats()));
         }
         return stringedStats;
@@ -51,9 +51,9 @@ public class StatsManager {
         updateStats(loser, 0, 1);
     }
     private void updateStats(String winner, int wins, int losses) {
-        Stats foundStats = get(new Stats(winner));
+        Statistics foundStats = get(new Statistics(winner));
         if (foundStats == null) {
-            stats.add(new Stats(winner, wins, losses));
+            stats.add(new Statistics(winner, wins, losses));
         } else {
             stats.remove(foundStats);
             foundStats.losses += losses;
@@ -61,11 +61,11 @@ public class StatsManager {
             stats.add(foundStats);
         }
     }
-    Stats get(Stats stats) {
+    Statistics get(Statistics stats) {
         return this.stats.stream().filter(stats::equals).findAny().orElse(null);
     }
 
-    public Set<Stats> getStats() {
+    public Set<Statistics> getStats() {
         return stats;
     }
 }
