@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/stats/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/statistics/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/stats/StatsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/statistics/StatisticsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/TicTacApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/TicTacApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/StatisticsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/StatisticsWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stats.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +108,7 @@
       <workItem from="1585166568448" duration="3049000" />
       <workItem from="1585169635373" duration="110000" />
       <workItem from="1585169786647" duration="1237000" />
-      <workItem from="1585342215832" duration="4549000" />
+      <workItem from="1585342215832" duration="5451000" />
     </task>
     <servers />
   </component>

@@ -16,7 +16,10 @@ import java.util.Set;
 
 public class StatisticsWindow {
     private static final int GAP = 10;
+
     public StatisticsWindow() {
+
+        // Configuring labels
         Set<Statistics> stats = new StatisticsManager().getStats();
         List<Label[]> labels = new ArrayList<>(stats.size());
         for(Statistics statsEntry : stats) {
@@ -26,9 +29,8 @@ public class StatisticsWindow {
             labeledStats[2] = new Label(statsEntry.getLosses().toString());
             labels.add(labeledStats);
         }
-        Stage statsStage = new Stage();
-        statsStage.getIcons().add(FileManager.readImage("src/main/resources/x.png"));
-        statsStage.setTitle("Stats");
+
+        // Configuring layouts
         GridPane statsPane = new GridPane();
         statsPane.setHgap(GAP);
         statsPane.setVgap(GAP);
@@ -40,6 +42,11 @@ public class StatisticsWindow {
         BorderPane spacingPane = new BorderPane();
         spacingPane.setCenter(statsPane);
         spacingPane.setMargin(statsPane, new Insets(GAP));
+
+        // Configuring window
+        Stage statsStage = new Stage();
+        statsStage.getIcons().add(FileManager.readImage("src/main/resources/x.png"));
+        statsStage.setTitle("Stats");
         statsStage.setScene(new Scene(spacingPane));
         statsStage.setResizable(false);
         statsStage.show();

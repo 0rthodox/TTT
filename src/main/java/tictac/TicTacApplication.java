@@ -16,16 +16,22 @@ public class TicTacApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("The Match of the Century");
-        primaryStage.getIcons().add(FileManager.readImage("src/main/resources/x.png"));
 
+        //Initializing properties
         BooleanProperty startPressedProperty = new SimpleBooleanProperty(false);
         BooleanProperty restartProperty = new SimpleBooleanProperty(false);
         BooleanProperty exitPressedProperty = new SimpleBooleanProperty(false);
         StringProperty playerDASRProperty = new SimpleStringProperty("");
         StringProperty playerDCAMProperty = new SimpleStringProperty("");
 
+        //Properties holder
+        List properties = new ArrayList<>(4);
+        properties.add(startPressedProperty);
+        properties.add(exitPressedProperty);
+        properties.add(playerDASRProperty);
+        properties.add(playerDCAMProperty);
+
+        // Adding property listeners
         startPressedProperty.addListener((observable, oldValue, newValue) ->
                 primaryStage.setScene(new Scene(
                         new GameView(restartProperty, playerDASRProperty.getValue(),
@@ -37,11 +43,11 @@ public class TicTacApplication extends Application {
             Stage newStage = new Stage();
             start(newStage);
         });
-        List properties = new ArrayList<>(4);
-        properties.add(startPressedProperty);
-        properties.add(exitPressedProperty);
-        properties.add(playerDASRProperty);
-        properties.add(playerDCAMProperty);
+
+        // Initializing stage
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("The Match of the Century");
+        primaryStage.getIcons().add(FileManager.readImage("src/main/resources/x.png"));
         primaryStage.setScene(new Scene(
                 new MainView(properties)));
         primaryStage.show();

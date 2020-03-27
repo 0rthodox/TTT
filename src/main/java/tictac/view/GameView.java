@@ -12,9 +12,12 @@ public class GameView extends GridPane {
     private GameViewModel viewModel = new GameViewModel();
     private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
     private String playerDASR, playerDCAM;
+
     public GameView(BooleanProperty restartProperty, String playerDASR, String playerDCAM) {
         this.playerDASR = playerDASR;
         this.playerDCAM = playerDCAM;
+
+        //Initializing cells
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 Cell cell = new Cell();
@@ -60,6 +63,7 @@ public class GameView extends GridPane {
         winnerAlert.setContentText(winner);
         winnerAlert.showAndWait();
     }
+
     private int[][] convertCells() {
         int[][] convertedCells = new int[3][3];
         int i = 0;

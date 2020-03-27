@@ -19,41 +19,34 @@ public class MainView extends VBox {
     private final int HEADING_TEXT_SIZE = 24;
 
 
-    BooleanProperty startPressed = new SimpleBooleanProperty(false);
-    BooleanProperty exitPressed = new SimpleBooleanProperty(false);
-
-    TextField textFieldDASR = new TextField();
-    TextField textFieldDCAM = new TextField();
-
     public MainView(List properties) {
 
-        GridPane choicePane = new GridPane();
-        choicePane.setHgap(GAP);
-        choicePane.setVgap(GAP);
-
+        // Configuring text fields
+        TextField textFieldDASR = new TextField();
+        TextField textFieldDCAM = new TextField();
         textFieldDASR.setPromptText("Anonymous");
         textFieldDCAM.setPromptText("Anonymous");
-
         textFieldDASR.textProperty().bindBidirectional((StringProperty)properties.get(2));
         textFieldDCAM.textProperty().bindBidirectional((StringProperty)properties.get(3));
-        startPressed.bindBidirectional((BooleanProperty)properties.get(0));
-        exitPressed.bindBidirectional((BooleanProperty)properties.get(1));
 
+        // Configuring buttons
         Button statistics = new Button("Statistics");
         Button startButton = new Button("Start");
         Button exitButton = new Button("Exit");
-
         statistics.setOnAction(event -> new StatisticsWindow());
-        startButton.setOnAction(event -> startPressed.setValue(true));
-        exitButton.setOnAction(event -> exitPressed.setValue(true));
+        startButton.setOnAction(event -> ((BooleanProperty)properties.get(0)).setValue(true));
+        exitButton.setOnAction(event -> ((BooleanProperty)properties.get(1)).setValue(true));
 
-        exitButton.defaultButtonProperty().bindBidirectional(exitPressed);
-
+        // Configuring titles
         Label title = new Label("WELCOME TO"+ lineSeparator() + "THE MATCH OF THE CENTURY");
         title.setFont(new Font("Comic Sans MS", HEADING_TEXT_SIZE));
         title.setTextFill(Color.rgb(115, 102, 189));
         title.setTextAlignment(TextAlignment.CENTER);
 
+        // Configuring choice pane
+        GridPane choicePane = new GridPane();
+        choicePane.setHgap(GAP);
+        choicePane.setVgap(GAP);
         choicePane.add(new Label("DASR player:"), 0, 0);
         choicePane.add(textFieldDASR, 1, 0);
         choicePane.add(new Label("DCAM player:"), 0, 1);
