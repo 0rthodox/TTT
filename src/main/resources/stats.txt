@@ -1,9 +1,15 @@
-B
-3
-4
 A
 3
 0
+Xasa Cutruk
+1
+0
+B
+3
+4
+Nikita Popov
+0
+1
 sdf
 1
 1

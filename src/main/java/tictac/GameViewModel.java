@@ -1,6 +1,6 @@
 package tictac;
 
-public class ViewModel {
+public class GameViewModel {
     private State state = State.EMPTY;
 
     public State getStateAndChange() {

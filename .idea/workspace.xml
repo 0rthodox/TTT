@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/tictac/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dasr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dcam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/qMark.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/stats.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cell/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stats/Stats.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stats/StatsManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictac/ImageManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictac/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictac/View.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tictac/ViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/FileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/TicTacApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/GameViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/View.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stats.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,9 +60,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tictac.App" />
+  <component name="RunManager" selected="Application.TicTacApplication">
+    <configuration name="TicTacApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tictac.TicTacApplication" />
       <module name="TicTacToe" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -86,7 +77,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
+        <item itemvalue="Application.TicTacApplication" />
         <item itemvalue="Application.TicTacToe" />
       </list>
     </recent_temporary>
@@ -116,7 +107,8 @@
       <workItem from="1585166498217" duration="5000" />
       <workItem from="1585166568448" duration="3049000" />
       <workItem from="1585169635373" duration="110000" />
-      <workItem from="1585169786647" duration="759000" />
+      <workItem from="1585169786647" duration="1237000" />
+      <workItem from="1585342215832" duration="4164000" />
     </task>
     <servers />
   </component>
