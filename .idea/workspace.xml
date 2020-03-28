@@ -4,7 +4,6 @@
     <list default="true" id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tictac/GameViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/GameViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +104,7 @@
       <workItem from="1585169635373" duration="110000" />
       <workItem from="1585169786647" duration="1237000" />
       <workItem from="1585342215832" duration="5641000" />
-      <workItem from="1585387636763" duration="2719000" />
+      <workItem from="1585387636763" duration="3241000" />
     </task>
     <servers />
   </component>

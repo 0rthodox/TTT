@@ -1,8 +1,5 @@
 package tictac;
 
-import javafx.scene.Node;
-import tictac.view.Cell;
-
 import java.util.List;
 
 public class GameViewModel {
