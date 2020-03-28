@@ -1,7 +1,6 @@
 package tictac.view;
 
 import javafx.scene.image.ImageView;
-import tictac.ImageManager;
 import tictac.State;
 
 public class Cell extends ImageView {

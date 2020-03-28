@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import statistics.Statistics;
+import statistics.PlayerStatistic;
 import statistics.StatisticsManager;
 import utils.FileManager;
 
@@ -20,13 +20,13 @@ public class StatisticsWindow {
     public StatisticsWindow() {
 
         // Configuring labels
-        Set<Statistics> stats = new StatisticsManager().getStats();
+        Set<PlayerStatistic> stats = new StatisticsManager().getStatistics();
         List<Label[]> labels = new ArrayList<>(stats.size());
-        for(Statistics statsEntry : stats) {
+        for(PlayerStatistic statsEntry : stats) {
             Label[] labeledStats = new Label[3];
             labeledStats[0] = new Label(statsEntry.getName());
-            labeledStats[1] = new Label(statsEntry.getWins().toString());
-            labeledStats[2] = new Label(statsEntry.getLosses().toString());
+            labeledStats[1] = new Label(String.valueOf(statsEntry.getWins()));
+            labeledStats[2] = new Label(String.valueOf(statsEntry.getLosses()));
             labels.add(labeledStats);
         }
 
@@ -41,7 +41,7 @@ public class StatisticsWindow {
         }
         BorderPane spacingPane = new BorderPane();
         spacingPane.setCenter(statsPane);
-        spacingPane.setMargin(statsPane, new Insets(GAP));
+        BorderPane.setMargin(statsPane, new Insets(GAP));
 
         // Configuring window
         Stage statsStage = new Stage();

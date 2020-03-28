@@ -3,6 +3,7 @@ package statistics;
 import com.sun.deploy.util.StringUtils;
 import utils.FileManager;
 
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -10,15 +11,29 @@ import java.util.*;
 import static java.lang.System.lineSeparator;
 
 public class StatisticsManager {
-    Path path = Paths.get("src/main/resources/stats.txt");
-    Set<Statistics> stats = new HashSet<>();
+    private final Path path;
+    private final Set<PlayerStatistic> statistics;
+
+    //Getter for statistics
+    public Set<PlayerStatistic> getStatistics() {
+        return statistics;
+    }
+
+    //Constructor
     public StatisticsManager() {
-        if (path.toFile().exists()) {
-            parseStats(FileManager.readPath(path));
+        statistics = new HashSet<>();
+        try {
+            path = Paths.get(getClass().getResource("/stats.txt").toURI());
+            if (path.toFile().exists()) {
+                parseStats(FileManager.readPath(path));
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    void parseStats(List<String> stats) {
+    // Parsing statistics from strings list
+    private void parseStats(List<String> stats) {
         int iterator = 0;
         if (stats.size() % 3 == 0) {
             while (iterator < stats.size()) {
@@ -26,46 +41,48 @@ public class StatisticsManager {
                 for (int i = 0; i < 3; ++i) {
                     stringedStats[i] = stats.get(iterator++);
                 }
-                this.stats.add(Statistics.parseStats(stringedStats));
+                this.statistics.add(PlayerStatistic.parseStats(stringedStats));
             }
         }
     }
-    List<String> stringeStats() {
+
+    // Converting statistics to strings list
+    private List<String> stringeStats() {
         List<String> stringedStats = new ArrayList<>();
-        for(Statistics statsEntry : stats) {
+        for(PlayerStatistic statsEntry : statistics) {
             stringedStats.addAll(Arrays.asList(statsEntry.stringifyStats()));
         }
         return stringedStats;
     }
 
-    public void saveStats() {
-        System.out.println("Saving");
+    // Saving statistics to file
+    public void saveStatistics() {
         FileManager.save(path, StringUtils.join(stringeStats(), lineSeparator()));
     }
 
+    //Updating winner statistics
     public void giveWin(String winner) {
-        updateStats(winner, 1, 0);
+        findOrCreateNewStatistic(winner).increaseWins();
     }
 
+    //Updating loser statistics
     public void giveLoss(String loser) {
-        updateStats(loser, 0, 1);
-    }
-    private void updateStats(String winner, int wins, int losses) {
-        Statistics foundStats = get(new Statistics(winner));
-        if (foundStats == null) {
-            stats.add(new Statistics(winner, wins, losses));
-        } else {
-            stats.remove(foundStats);
-            foundStats.losses += losses;
-            foundStats.wins += wins;
-            stats.add(foundStats);
-        }
-    }
-    Statistics get(Statistics stats) {
-        return this.stats.stream().filter(stats::equals).findAny().orElse(null);
+        findOrCreateNewStatistic(loser).increaseLosses();
     }
 
-    public Set<Statistics> getStats() {
-        return stats;
+    //Finding desired statistics in set or creating new if doesn't exist
+    private PlayerStatistic findOrCreateNewStatistic(String player) {
+        PlayerStatistic found = statistics
+                .stream()
+                .filter(statistic -> statistic.getName().equals(player))
+                .findAny()
+                .orElse(null);
+        if (found == null) {
+            PlayerStatistic newStat = new PlayerStatistic(player, 0, 0);
+            statistics.add(newStat);
+            return newStat;
+        } else {
+            return found;
+        }
     }
 }

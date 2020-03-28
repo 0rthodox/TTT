@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="514e9e2f-6dba-4a51-a50c-96bacb0b1a63" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/stats.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/statistics/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/statistics/PlayerStatistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/statistics/StatisticsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/statistics/StatisticsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tictac/GameViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/GameViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/ImageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tictac/view/StatisticsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tictac/view/StatisticsWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/stats.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stats.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +112,9 @@
       <workItem from="1585169635373" duration="110000" />
       <workItem from="1585169786647" duration="1237000" />
       <workItem from="1585342215832" duration="5641000" />
-      <workItem from="1585387636763" duration="3241000" />
+      <workItem from="1585387636763" duration="3473000" />
+      <workItem from="1585395184966" duration="2333000" />
+      <workItem from="1585423888080" duration="2455000" />
     </task>
     <servers />
   </component>

@@ -1,15 +1,14 @@
 package tictac.view;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 import statistics.StatisticsManager;
 import tictac.State;
 import tictac.GameViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameView extends GridPane {
     private GameViewModel viewModel = new GameViewModel();
@@ -27,7 +26,7 @@ public class GameView extends GridPane {
                 cell.setOnMouseClicked(event -> {
                     if (cell.getState().equals(State.EMPTY)) {
                         cell.setState(viewModel.getStateAndChange());
-                        State winningState = viewModel.checkWinner(extractStatesFromCells());
+                        State winningState = viewModel.checkWinner(extractStates());
                         if (winningState != null) {
                             showWinner(winningState);
                             restartProperty.setValue(true);
@@ -52,7 +51,7 @@ public class GameView extends GridPane {
             if (!playerDASR.isEmpty()) {
                 statsManager.giveWin(playerDASR);
             }
-            statsManager.saveStats();
+            statsManager.saveStatistics();
         } else {
             winner = "The winner is " + playerDCAM + " (DCAM)";
             if (!playerDCAM.isEmpty()) {
@@ -61,17 +60,16 @@ public class GameView extends GridPane {
             if (!playerDASR.isEmpty()) {
                 statsManager.giveLoss(playerDASR);
             }
-            statsManager.saveStats();
+            statsManager.saveStatistics();
         }
         winnerAlert.setContentText(winner);
         winnerAlert.showAndWait();
     }
 
-    private List<State> extractStatesFromCells() {
-        List<State> states = new ArrayList<>(getChildren().size());
-        for (Node node : getChildren()) {
-            states.add(((Cell)node).getState());
-        }
-        return states;
+    private List<State> extractStates() {
+        return getChildren()
+                .stream()
+                .map(x -> ((Cell)x).getState())
+                .collect(Collectors.toList());
     }
 }

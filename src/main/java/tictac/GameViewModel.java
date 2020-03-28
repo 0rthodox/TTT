@@ -48,14 +48,14 @@ public class GameViewModel {
 
     private int[][] convertStatesToIntegers(List<State> states) {
         int[][] integers = new int[3][3];
-        int i = 0;
-        int j = 0;
-        for(State state : states) {
-            integers[i][j++] = state.getInteger();
-            if (j == 3) {
-                j = 0;
-                i++;
-            }
+            int i = 0;
+            int j = 0;
+            for(State state : states) {
+                integers[i][j++] = state.getInteger();
+                if (j == 3) {
+                    j = 0;
+                    i++;
+                }
         }
         return integers;
 

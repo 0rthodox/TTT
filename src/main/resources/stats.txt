@@ -1,18 +1,24 @@
-sdf
-1
-1
 f
 1
+1
+Nikita Popov
+0
 1
 A
 3
 0
-Nikita Popov
+B
+3
+4
+zsdfgc
+1
+0
+sdf
+1
+1
+sFdgfx
 0
 1
 Xasa Cutruk
 1
 0
-B
-3
-4

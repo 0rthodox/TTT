@@ -1,11 +1,12 @@
-package tictac;
+package tictac.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tictac.State;
 import utils.FileManager;
 
-public class ImageManager {
-    //TODO: static class
+public final class ImageManager {
+    private ImageManager() {}
     private static final Image IMAGE_DASR = FileManager.readImage("src/main/resources/dasr.png");
     private static final Image IMAGE_DCAM = FileManager.readImage("src/main/resources/dcam.png");
     private static final Image IMAGE_QUESTION_MARK = FileManager.readImage("src/main/resources/qMark.jpg");
