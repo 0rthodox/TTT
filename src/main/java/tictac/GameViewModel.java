@@ -1,5 +1,10 @@
 package tictac;
 
+import javafx.scene.Node;
+import tictac.view.Cell;
+
+import java.util.List;
+
 public class GameViewModel {
     private State state = State.EMPTY;
 
@@ -13,7 +18,7 @@ public class GameViewModel {
         }
     }
 
-    public State checkWinner(State[][] states) {
+    public State checkWinner(List<State> states) {
         int[][] values = convertStatesToIntegers(states);
         boolean hasEmptyCell = false;
         int[] sum = new int[8];
@@ -44,11 +49,15 @@ public class GameViewModel {
         return State.EMPTY;
     }
 
-    private int[][] convertStatesToIntegers(State[][] states) {
+    private int[][] convertStatesToIntegers(List<State> states) {
         int[][] integers = new int[3][3];
-        for (int i = 0; i < 3; ++i) {
-            for(int j = 0; j < 3; ++j) {
-                integers[i][j] = states[i][j].getInteger();
+        int i = 0;
+        int j = 0;
+        for(State state : states) {
+            integers[i][j++] = state.getInteger();
+            if (j == 3) {
+                j = 0;
+                i++;
             }
         }
         return integers;

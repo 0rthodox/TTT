@@ -8,6 +8,9 @@ import statistics.StatisticsManager;
 import tictac.State;
 import tictac.GameViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameView extends GridPane {
     private GameViewModel viewModel = new GameViewModel();
     private Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -24,7 +27,7 @@ public class GameView extends GridPane {
                 cell.setOnMouseClicked(event -> {
                     if (cell.getState().equals(State.EMPTY)) {
                         cell.setState(viewModel.getStateAndChange());
-                        State winningState = viewModel.checkWinner(convertCellsToStates());
+                        State winningState = viewModel.checkWinner(extractStatesFromCells());
                         if (winningState != null) {
                             showWinner(winningState);
                             restartProperty.setValue(true);
@@ -64,17 +67,11 @@ public class GameView extends GridPane {
         winnerAlert.showAndWait();
     }
 
-    private State[][] convertCellsToStates() {
-        State[][] convertedCells = new State[3][3];
-        int i = 0;
-        int j = 0;
-        for(Node node : getChildren()) {
-            convertedCells[i][j++] = ((Cell)node).getState();
-            if (j == 3) {
-                j = 0;
-                i++;
-            }
+    private List<State> extractStatesFromCells() {
+        List<State> states = new ArrayList<>(getChildren().size());
+        for (Node node : getChildren()) {
+            states.add(((Cell)node).getState());
         }
-        return convertedCells;
+        return states;
     }
 }

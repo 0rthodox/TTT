@@ -4,14 +4,14 @@ sdf
 f
 1
 1
+A
+3
+0
 Nikita Popov
 0
 1
 Xasa Cutruk
 1
-0
-A
-3
 0
 B
 3
