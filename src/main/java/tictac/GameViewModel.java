@@ -13,7 +13,8 @@ public class GameViewModel {
         }
     }
 
-    public State checkWinner(int[][] values) {
+    public State checkWinner(State[][] states) {
+        int[][] values = convertStatesToIntegers(states);
         boolean hasEmptyCell = false;
         int[] sum = new int[8];
         for(int i = 0; i < 3; ++i) {
@@ -41,5 +42,16 @@ public class GameViewModel {
             return null;
         }
         return State.EMPTY;
+    }
+
+    private int[][] convertStatesToIntegers(State[][] states) {
+        int[][] integers = new int[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for(int j = 0; j < 3; ++j) {
+                integers[i][j] = states[i][j].getInteger();
+            }
+        }
+        return integers;
+
     }
 }

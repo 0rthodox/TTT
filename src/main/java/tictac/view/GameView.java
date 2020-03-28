@@ -24,7 +24,7 @@ public class GameView extends GridPane {
                 cell.setOnMouseClicked(event -> {
                     if (cell.getState().equals(State.EMPTY)) {
                         cell.setState(viewModel.getStateAndChange());
-                        State winningState = viewModel.checkWinner(convertCells());
+                        State winningState = viewModel.checkWinner(convertCellsToStates());
                         if (winningState != null) {
                             showWinner(winningState);
                             restartProperty.setValue(true);
@@ -64,12 +64,12 @@ public class GameView extends GridPane {
         winnerAlert.showAndWait();
     }
 
-    private int[][] convertCells() {
-        int[][] convertedCells = new int[3][3];
+    private State[][] convertCellsToStates() {
+        State[][] convertedCells = new State[3][3];
         int i = 0;
         int j = 0;
         for(Node node : getChildren()) {
-            convertedCells[i][j++] = ((Cell)node).getState().getInteger();
+            convertedCells[i][j++] = ((Cell)node).getState();
             if (j == 3) {
                 j = 0;
                 i++;
