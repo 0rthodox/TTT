@@ -7,12 +7,14 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import static java.lang.System.lineSeparator;
 
-public class StatisticsManager {
+public class StatisticHolder {
     private final Path path;
-    private final Set<PlayerStatistic> statistics;
+    private Set<PlayerStatistic> statistics;
 
     //Getter for statistics
     public Set<PlayerStatistic> getStatistics() {
@@ -20,12 +22,11 @@ public class StatisticsManager {
     }
 
     //Constructor
-    public StatisticsManager() {
-        statistics = new HashSet<>();
+    public StatisticHolder() {
         try {
             path = Paths.get(getClass().getResource("/stats.txt").toURI());
             if (path.toFile().exists()) {
-                parseStats(FileManager.readPath(path));
+                statistics = parseStats(FileManager.readPath(path));
             }
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
@@ -33,31 +34,39 @@ public class StatisticsManager {
     }
 
     // Parsing statistics from strings list
-    private void parseStats(List<String> stats) {
-        int iterator = 0;
-        if (stats.size() % 3 == 0) {
-            while (iterator < stats.size()) {
-                String[] stringedStats = new String[3];
-                for (int i = 0; i < 3; ++i) {
-                    stringedStats[i] = stats.get(iterator++);
-                }
-                this.statistics.add(PlayerStatistic.parseStats(stringedStats));
-            }
-        }
+    private Set<PlayerStatistic> parseStats(List<String> stats) {
+        AtomicInteger counter = new AtomicInteger();
+        return stats
+                .stream()
+                .collect(Collectors.
+                        groupingBy(str -> counter.getAndIncrement() / 3))
+                .values()
+                .stream()
+                .map(strings -> new PlayerStatistic(strings.get(0),
+                        Integer.parseInt(strings.get(1)),
+                        Integer.parseInt(strings.get(2))))
+                .collect(Collectors.toSet());
     }
 
     // Converting statistics to strings list
-    private List<String> stringeStats() {
-        List<String> stringedStats = new ArrayList<>();
-        for(PlayerStatistic statsEntry : statistics) {
-            stringedStats.addAll(Arrays.asList(statsEntry.stringifyStats()));
-        }
-        return stringedStats;
+    private List<String> stringifyStats() {
+        return statistics
+                .stream()
+                .map(statistic -> {
+            List<String> stringedStatistic = new ArrayList<>(3);
+            stringedStatistic.add(statistic.getName());
+            stringedStatistic.add(String.valueOf(statistic.getWins()));
+            stringedStatistic.add(String.valueOf(statistic.getLosses()));
+            return stringedStatistic;
+        }).collect(Collectors.toList())
+                .stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     // Saving statistics to file
     public void saveStatistics() {
-        FileManager.save(path, StringUtils.join(stringeStats(), lineSeparator()));
+        FileManager.save(path, StringUtils.join(stringifyStats(), lineSeparator()));
     }
 
     //Updating winner statistics

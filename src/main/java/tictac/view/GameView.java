@@ -3,7 +3,7 @@ package tictac.view;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
-import statistics.StatisticsManager;
+import statistics.StatisticHolder;
 import tictac.State;
 import tictac.GameViewModel;
 
@@ -39,7 +39,7 @@ public class GameView extends GridPane {
     }
 
     private void showWinner(State state) {
-        StatisticsManager statsManager = new StatisticsManager();
+        StatisticHolder statsManager = new StatisticHolder();
         String winner;
         if (state.equals(State.EMPTY)) {
             winner = "Draw";

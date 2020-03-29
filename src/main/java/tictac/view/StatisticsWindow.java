@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import statistics.PlayerStatistic;
-import statistics.StatisticsManager;
+import statistics.StatisticHolder;
 import utils.FileManager;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class StatisticsWindow {
     public StatisticsWindow() {
 
         // Configuring labels
-        Set<PlayerStatistic> stats = new StatisticsManager().getStatistics();
+        Set<PlayerStatistic> stats = new StatisticHolder().getStatistics();
         List<Label[]> labels = new ArrayList<>(stats.size());
         for(PlayerStatistic statsEntry : stats) {
             Label[] labeledStats = new Label[3];
